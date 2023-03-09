@@ -3,11 +3,13 @@ import HomeHeader from '@/components/Home/HomeHeader.vue';
 import Contact from '@/components/Home/Contact.vue';
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useModal } from '@/hooks/useModal';
 export default {
   components: { HomeHeader, Contact },
   setup() {
+    const router = useRouter();
+    const modal = useModal();
     onMounted(() => {
-      const router = useRouter();
       const token = window.localStorage.getItem('token');
 
       if (token) {
@@ -15,7 +17,11 @@ export default {
       }
     });
 
-    function handleLogin() {}
+    function handleLogin() {
+      modal.open({
+        component: 'ModalLogin',
+      });
+    }
 
     function handleAccountCreate() {}
 
@@ -27,7 +33,7 @@ export default {
 <template>
   <HomeHeader @create-account="handleAccountCreate" @login="handleLogin" />
   <Contact />
-  <div class="flex justify-center py-10 bg-brand-gray">
-    <footer class="font-medium text-center text-gray-800">Feedbacker © 2023</footer>
+  <div class="flex justify-center bg-brand-gray py-10">
+    <footer class="text-center font-medium text-gray-800">Feedbacker © 2023</footer>
   </div>
 </template>
