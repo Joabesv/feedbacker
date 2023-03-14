@@ -25,6 +25,7 @@ specifiers:
   tailwindcss: ^3.2.7
   tiny-emitter: ^2.1.0
   typescript: ~4.8.4
+  vee-validate: ^4.8.1
   vite: ^4.1.4
   vitest: ^0.29.1
   vue: ^3.2.47
@@ -35,6 +36,7 @@ dependencies:
   animate.css: 4.1.1
   pinia: 2.0.33_7h6e7cvei2rsgyre2mq4fyhehq
   tiny-emitter: 2.1.0
+  vee-validate: 4.8.1_vue@3.2.47
   vue: 3.2.47
   vue-router: 4.1.6_vue@3.2.47
 
@@ -4136,6 +4138,15 @@ packages:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
     dev: true
+
+  /vee-validate/4.8.1_vue@3.2.47:
+    resolution: {integrity: sha512-WjGeb3Mm3UoOriS8+45o/ZnUroQNwDBbc1Dhx24//TKh+D5rMIuPisVUjqT3wxduiKSbytzougrrZl9UHrTEdQ==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@vue/devtools-api': 6.5.0
+      vue: 3.2.47
+    dev: false
 
   /verror/1.10.0:
     resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}

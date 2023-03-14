@@ -28,7 +28,6 @@ export default {
     });
 
     function handleModalToggle(payload: Payload) {
-      console.log('payload mate', payload);
       if (payload.status) {
         state.component = payload.component;
         state.props = payload.props;
