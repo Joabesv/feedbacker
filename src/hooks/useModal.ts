@@ -1,10 +1,10 @@
 // this hook will be acting like my events service
 import { emitter } from '@/utils/event-buzz';
 
-const EVENT_NAME = 'modal:toogle';
+const EVENT_NAME = 'modal:toggle';
 
 export function useModal() {
-  function open(payload: {}) {
+  function open(payload: {} = {}) {
     emitter.emit(EVENT_NAME, { status: true, ...payload });
   }
 

@@ -3,9 +3,9 @@
     <div
       v-if="state.isActive"
       class="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-50"
-      @click="handleModalToggle({ status })"
+      @click="handleModalToggle({ status: false })"
     >
-      <div class="fixed mx-10" :class="state.width">
+      <div class="fixed mx-10" :class="state.width" @click.stop>
         <div
           class="animate__fadeInDown animate__faster animate__animated flex flex-col overflow-hidden rounded-lg bg-white"
         >
@@ -19,16 +19,25 @@
 </template>
 
 <script lang="ts">
+import { defineAsyncComponent, onBeforeUnmount, onMounted, reactive, type Component } from 'vue';
 import { useModal } from '@/hooks/useModal';
-import { defineComponent, onBeforeUnmount, onMounted, reactive, type Component } from 'vue';
+const LoginModal = defineAsyncComponent(() => import('../components/LoginModal.vue'));
 const DEFAULT_WIDTH = 'w-3/4 lg:w-1/3';
 
-export default defineComponent({
+export default {
+  components: {
+    LoginModal,
+  },
   setup() {
-    const state = reactive({ isActive: false, component: {}, props: {}, width: DEFAULT_WIDTH });
     const modal = useModal();
-    onMounted(() => modal.listen(handleModalToggle));
-    onBeforeUnmount(() => modal.off(handleModalToggle));
+    const state = reactive({ isActive: false, component: {}, props: {}, width: DEFAULT_WIDTH });
+
+    onMounted(() => {
+      modal.listen(handleModalToggle);
+    });
+    onBeforeUnmount(() => {
+      modal.off(handleModalToggle);
+    });
 
     function handleModalToggle(payload: {
       status: boolean;
@@ -36,6 +45,7 @@ export default defineComponent({
       props: {};
       width: string;
     }) {
+      console.log('payload mate', payload);
       if (payload.status) {
         state.component = payload.component;
         state.props = payload.props;
@@ -46,10 +56,12 @@ export default defineComponent({
         state.props = {};
         state.width = DEFAULT_WIDTH;
       }
+
+      state.isActive = payload.status;
     }
     return { state, handleModalToggle };
   },
-});
+};
 </script>
 
 <style scoped></style>

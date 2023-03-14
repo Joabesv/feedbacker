@@ -1,7 +1,11 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
-</script>
-
 <template>
+  <FactoryModal />
   <RouterView />
 </template>
+
+<script lang="ts">
+import FactoryModal from '@/components/FactoryModal.vue';
+export default {
+  components: { FactoryModal },
+};
+</script>

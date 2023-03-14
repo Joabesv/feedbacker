@@ -11,6 +11,7 @@
             Crie sua conta
           </button>
           <button
+            @click="() => emit('login')"
             class="rounded-full bg-white px-6 py-2 font-bold text-brand-main focus:outline-none"
           >
             Entrar
@@ -40,7 +41,14 @@
   </header>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts">
+export default {
+  emits: ['login', 'create-account'],
+  setup(_, { emit }) {
+    return { emit };
+  },
+};
+</script>
 
 <style scoped>
 .home-header {

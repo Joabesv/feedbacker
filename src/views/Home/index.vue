@@ -1,8 +1,16 @@
+<template>
+  <HomeHeader @create-account="handleAccountCreate" @login="handleLogin" />
+  <Contact />
+  <div class="flex justify-center bg-brand-gray py-10">
+    <footer class="text-center font-medium text-gray-800">Feedbacker © 2023</footer>
+  </div>
+</template>
+
 <script lang="ts">
-import HomeHeader from '@/components/Home/HomeHeader.vue';
-import Contact from '@/components/Home/Contact.vue';
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import HomeHeader from '@/components/Home/HomeHeader.vue';
+import Contact from '@/components/Home/Contact.vue';
 import { useModal } from '@/hooks/useModal';
 export default {
   components: { HomeHeader, Contact },
@@ -18,8 +26,9 @@ export default {
     });
 
     function handleLogin() {
+      console.log('login');
       modal.open({
-        component: 'ModalLogin',
+        component: 'LoginModal',
       });
     }
 
@@ -29,11 +38,3 @@ export default {
   },
 };
 </script>
-
-<template>
-  <HomeHeader @create-account="handleAccountCreate" @login="handleLogin" />
-  <Contact />
-  <div class="flex justify-center bg-brand-gray py-10">
-    <footer class="text-center font-medium text-gray-800">Feedbacker © 2023</footer>
-  </div>
-</template>
