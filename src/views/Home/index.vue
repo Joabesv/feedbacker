@@ -26,13 +26,16 @@ export default {
     });
 
     function handleLogin() {
-      console.log('login');
       modal.open({
         component: 'LoginModal',
       });
     }
 
-    function handleAccountCreate() {}
+    function handleAccountCreate() {
+      modal.open({
+        component: 'CreateAccountModal',
+      });
+    }
 
     return { handleLogin, handleAccountCreate };
   },

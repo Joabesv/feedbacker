@@ -7,7 +7,10 @@
         </div>
 
         <div class="flex">
-          <button class="rounded-ful px-6 py-2 font-bold text-white focus:outline-none">
+          <button
+            class="rounded-ful px-6 py-2 font-bold text-white focus:outline-none"
+            @click="() => emit('create-account')"
+          >
             Crie sua conta
           </button>
           <button
