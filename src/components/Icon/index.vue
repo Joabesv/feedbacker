@@ -1,0 +1,15 @@
+<script lang="ts">
+import Loading from './Loading.vue';
+export default {
+  components: { Loading },
+  props: {
+    name: { type: String, required: true },
+  },
+};
+</script>
+
+<template>
+  <component :is="name" v-bind="$props"></component>
+</template>
+
+<style lang="scss" scoped></style>

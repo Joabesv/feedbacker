@@ -1,12 +1,18 @@
 <script lang="ts">
 import { reactive } from 'vue';
+
 import { useRouter } from 'vue-router';
 import { useField } from 'vee-validate';
 import { useToast } from 'vue-toastification';
 import { useModal } from '@/hooks/useModal';
+
+import Icon from '../Icon/index.vue';
+
 import { validateEmptyAndEmail, validateEmptyAndLength } from '@/utils/validators';
 import { services } from '@/services';
+
 export default {
+  components: { Icon },
   setup() {
     const modal = useModal();
     const router = useRouter();
@@ -44,7 +50,7 @@ export default {
         if (!errors) {
           window.localStorage.setItem('token', data.token);
           state.isLoading = false;
-          router.push({ name: 'Feedbacks' });
+          router.push({ name: 'feedbacks' });
           modal.close({});
           return;
         }
@@ -58,15 +64,14 @@ export default {
         }
 
         if (errors.status === 400) {
-          console.log('aqui?');
           toast.error('Ocorreu um erro ao fazer o login');
         }
 
         state.isLoading = false;
       } catch (err) {
+        console.log('erro do catch', err);
         state.isLoading = false;
         state.hasErrors = !!err;
-        console.log('aqui?');
         toast.error('Ocorreu um erro ao fazer o login');
       }
     }
@@ -93,7 +98,7 @@ export default {
             'border-brand-danger': !!state.email.errorMessage,
           }"
           class="mt-1 block w-full rounded border-2 border-transparent bg-gray-100 px-4 py-3 text-lg"
-          placeholder="janeDone@gmail.com"
+          placeholder="janeDoe@gmail.com"
         />
 
         <span class="block font-medium text-brand-danger" :if="!!state.email.errorMessage">
@@ -123,7 +128,8 @@ export default {
         :class="{ 'opacity-50': state.isLoading }"
         class="mt-10 rounded-full bg-brand-main px-8 py-3 text-2xl font-bold text-white transition-all duration-150 focus:outline-none"
       >
-        Entrar
+        <icon v-if="state.isLoading" name="loading" class="animate-spin" />
+        <span v-else>Entrar</span>
       </button>
     </form>
   </div>
