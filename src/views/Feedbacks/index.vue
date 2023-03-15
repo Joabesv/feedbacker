@@ -1,7 +1,11 @@
-<script setup lang="ts"></script>
+<script lang="ts">
+export default {};
+</script>
 
 <template>
-  <div></div>
+  <div>
+    <h1>Welcome friend</h1>
+  </div>
 </template>
 
 <style scoped></style>
